@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const tokenBlacklistModel = require("../models/blacklistToken.model.js");
+const tokenBlacklistModel = require("../models/blacklist.model.js");
 
 /**
  * @description Protect routes by verifying JWT signature and checking the token blacklist
