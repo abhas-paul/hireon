@@ -17,6 +17,13 @@ authRouter.post("/register", authController.registerUser);
  */
 authRouter.post("/login", authController.loginUser);
 
+/**
+ * @route       POST /api/auth/logout
+ * @description Clear the authentication token cookie to log the user out
+ * @access      Public
+ */
 authRouter.post("/logout", authController.logoutUser);
+
+authRouter.post("/me", getUser);
 
 module.exports = authRouter;

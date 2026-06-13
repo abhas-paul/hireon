@@ -1,4 +1,6 @@
 const userModel = require("../models/user.model.js");
+const tokenBlacklistModel = require("../models/blacklist.model.js");
+
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -137,11 +139,41 @@ async function loginUser(req, res, next) {
     }
 }
 
-async function logoutUser(req, res) {
-    
+/**
+ * Invalidate JWT and clear auth cookie
+ */
+async function logoutUser(req, res, next) {
+    try {
+        const token = req.cookies?.token;
+
+        if (token) {
+            try {
+                await tokenBlacklistModel.create({ token });
+            } catch (err) {
+                // I'm ignoring duplicate key errors just in case I double-click logout
+                if (err.code !== 11000) throw err;
+            }
+        }
+
+        // I'm clearing the cookie using the exact same security flags it was set with
+        res.clearCookie("token", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict"
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: "Logged out successfully."
+        });
+
+    } catch (error) {
+        next(error);
+    }
 }
 
 module.exports = {
     registerUser,
     loginUser,
+    logoutUser
 };
