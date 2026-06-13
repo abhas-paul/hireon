@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 /**
- * Handles new user registration, hashes passwords, and sets an auth cookie.
+ * @description Handles new user registration, hashes passwords, and sets an auth cookie.
  */
 async function registerUser(req, res, next) {
     try {
@@ -73,7 +73,7 @@ async function registerUser(req, res, next) {
 }
 
 /**
- * Verification and token generation for user login.
+ * @description Verification and token generation for user login.
  */
 async function loginUser(req, res, next) {
     try {
@@ -140,7 +140,7 @@ async function loginUser(req, res, next) {
 }
 
 /**
- * Invalidate JWT and clear auth cookie
+ * @description Invalidate JWT and clear auth cookie
  */
 async function logoutUser(req, res, next) {
     try {
@@ -172,8 +172,37 @@ async function logoutUser(req, res, next) {
     }
 }
 
+/**
+ * @description Get current authenticated user details
+ */
+async function getUser(req, res, next) {
+    try {
+        const user = await userModel.findById(req.user.id);
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "User details fetched successfully", // Fixed a typo here
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email
+            }
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     registerUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    getUser
 };
