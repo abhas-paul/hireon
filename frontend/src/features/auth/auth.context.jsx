@@ -1,7 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
+import { getMe } from "./services/auth.api";
 
 /**
  * Context object for authentication state.
+ * @type {React.Context<Object>}
  */
 export const AuthContext = createContext(null);
 
@@ -13,7 +15,28 @@ export const AuthContext = createContext(null);
  */
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        /**
+         * Asynchronously fetches the current user session from the API.
+         * Updates user state on success, clears it on failure, and manages loading state.
+         */
+        const fetchUser = async () => {
+            try {
+                const data = await getMe();
+                setUser(data.user);
+            } catch (error) {
+                console.error("No active session found:", error.message);
+                setUser(null);
+            } finally {
+
+                setLoading(false);
+            }
+        };
+
+        fetchUser();
+    }, []);
 
     return (
         <AuthContext.Provider value={{ user, setUser, loading, setLoading }}>
