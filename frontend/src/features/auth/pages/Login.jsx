@@ -5,12 +5,11 @@ import '../auth.form.scss';
 import { useAuth } from '../hooks/useAuth';
 
 function Login() {
-
     const { loading, handleLogin } = useAuth();
     const navigate = useNavigate();
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,7 +27,7 @@ function Login() {
             <main>
                 <h1>Loading....</h1>
             </main>
-        )
+        );
     }
 
     return (
@@ -38,30 +37,37 @@ function Login() {
 
                 <form onSubmit={handleSubmit}>
 
-                    <legend className="sr-only">Login Credentials</legend>
-
                     <div className="input-group">
                         <label htmlFor="email">Email</label>
                         <input
-                            onChange={(e) => { setEmail(e.target.value) }}
-                            type="email" id="email" name="email" placeholder="Enter email address" required />
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={email} // 👈 Bound state here
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter email address"
+                            required
+                        />
                     </div>
 
                     <div className="input-group">
                         <label htmlFor="password">Password</label>
                         <input
-                            onChange={(e) => { setPassword(e.target.value) }}
-                            type="password" id="password" name="password" placeholder="Enter password" required />
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={password} // 👈 Bound state here
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter password"
+                            required
+                        />
                     </div>
 
                     <button type="submit" className="button primary-button">Login</button>
-
                 </form>
 
-                <p>Dont have an account?
-                    <Link to={"/register"}>
-                        Register
-                    </Link>
+                <p>Don't have an account?
+                    <Link to={"/register"}> Register</Link>
                 </p>
             </section>
         </main>
