@@ -1,3 +1,4 @@
+import { Link } from 'react-router';
 import '../auth.form.scss';
 
 function Login() {
@@ -28,6 +29,12 @@ function Login() {
                     <button type="submit" className="button primary-button">Login</button>
 
                 </form>
+
+                <p>Dont have an account?
+                    <Link to={"/register"}>
+                        Register
+                    </Link>
+                </p>
             </section>
         </main>
     );
