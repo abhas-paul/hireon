@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useState } from 'react';
 
 import '../auth.form.scss';
@@ -7,17 +7,21 @@ import { useAuth } from '../hooks/useAuth';
 function Login() {
 
     const { loading, handleLogin } = useAuth();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        await handleLogin({ email, password });
-
-        
-    }
+        try {
+            await handleLogin({ email, password });
+            navigate("/");
+        } catch (error) {
+            console.error("Login failed:", error);
+        }
+    };
 
     if (loading) {
         return (
