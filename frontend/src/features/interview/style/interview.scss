@@ -1,0 +1,144 @@
+.interview-page {
+    min-height: 100vh;
+    background: #060b16;
+    color: #fff;
+
+    display: grid;
+    grid-template-columns: 220px 1fr 260px;
+    gap: 1rem;
+
+    padding: 1rem;
+
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+.left-sidebar,
+.content,
+.right-sidebar {
+    background: #0b1220;
+    border: 1px solid #1e293b;
+    border-radius: 24px;
+}
+
+.left-sidebar {
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    button {
+        background: transparent;
+        border: 1px solid #334155;
+        color: #cbd5e1;
+
+        padding: 0.8rem;
+        border-radius: 12px;
+
+        text-align: left;
+        cursor: pointer;
+
+        transition: all 0.2s ease;
+
+        &:hover {
+            border-color: #ff2d7a;
+            color: #fff;
+        }
+    }
+}
+
+.content {
+    padding: 2rem;
+    overflow-y: auto;
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+.question-card {
+    background: #141b2d;
+    border: 1px solid #243045;
+
+    padding: 1.25rem;
+    border-radius: 16px;
+
+    margin-bottom: 1rem;
+
+    h3 {
+        margin-bottom: 0.75rem;
+        font-size: 1.05rem;
+    }
+
+    p {
+        color: #94a3b8;
+        line-height: 1.6;
+    }
+}
+
+.right-sidebar {
+    padding: 1rem;
+
+    h3 {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+
+    span {
+        padding: 0.5rem 0.9rem;
+
+        border-radius: 999px;
+
+        border: 1px solid rgba(255, 45, 122, 0.35);
+
+        background: rgba(255, 45, 122, 0.1);
+
+        color: #ff2d7a;
+
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 1024px) {
+    .interview-page {
+        grid-template-columns: 180px 1fr;
+    }
+
+    .right-sidebar {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .interview-page {
+        grid-template-columns: 1fr;
+    }
+
+    .left-sidebar,
+    .right-sidebar,
+    .content {
+        width: 100%;
+    }
+
+    .left-sidebar {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .content {
+        padding: 1.25rem;
+    }
+}
