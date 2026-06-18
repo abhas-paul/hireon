@@ -1,214 +1,403 @@
 .home {
     min-height: 100vh;
-    padding: 4rem 1rem;
-    background: #060b16;
-    color: #fff;
-    font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Oxygen,
-        Ubuntu,
-        Cantarell,
-        "Open Sans",
-        "Helvetica Neue",
-        sans-serif;
+    background: #001207;
+    padding: 4rem 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
 
+    .hero {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        
-        .hero {
-        text-align: center;
-        max-width: 700px;
-        margin: 0 auto 3rem;
+        justify-content: center;
 
         h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
+            font-family: "CalSans";
+            font-weight: 400;
+            color: #ffffff;
+            text-align: center;
+            line-height: 0.95;
+            max-width: 800px;
+            font-size: clamp(2rem, 5vw, 2.8rem);
 
             span {
-                color: #ff2d7a;
+                display: block;
+                color: #00ff33;
             }
-        }
-
-        p {
-            color: #94a3b8;
-            line-height: 1.7;
         }
     }
 
     .interview-card {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1.3fr 1fr;
+        width: 100%;
+        max-width: 1400px;
+        min-height: 650px;
 
-        background: #0b1220;
-        border: 1px solid #1e293b;
-        border-radius: 24px;
-        overflow: hidden;
-    }
+        background: #000f03;
+        border: 2px solid #174600;
+        border-radius: 1.25rem;
 
-    .left,
-    .right {
         padding: 1.5rem;
+
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        grid-template-areas:
+            "job profile"
+            "submit submit";
+
+        gap: 1.5rem;
     }
 
-    .left {
-        border-right: 1px solid #1e293b;
-    }
+    label {
+        color: white;
+        font-family: "CalSans";
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
 
-    .section-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1rem;
-
-        h3 {
-            font-size: 1rem;
-            font-weight: 600;
+        span {
+            color: #00ff33;
         }
     }
 
-    .badge {
-        background: rgba(255, 45, 122, 0.15);
-        color: #ff2d7a;
-        border: 1px solid rgba(255, 45, 122, 0.3);
-        border-radius: 999px;
-        padding: 0.25rem 0.65rem;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
+    .job-section {
+        grid-area: job;
+        display: flex;
+        flex-direction: column;
+        min-height: 550px;
+    }
+
+    .profile-section {
+        grid-area: profile;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .resume-section,
+    .bio-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .resume-section {
+        flex: 1;
+    }
+
+    .bio-section {
+        height: 220px;
     }
 
     textarea {
         width: 100%;
-        background: #141b2d;
-        border: 1px solid #243045;
-        border-radius: 14px;
+        flex: 1;
+
+        background: #001604;
+        border: 2px solid #174600;
+        border-radius: 1rem;
+
         color: white;
+        font-family: "CalSans";
+        font-size: 0.95rem;
+        line-height: 1.5;
+
         padding: 1rem;
         resize: none;
-        font-size: 0.95rem;
         outline: none;
 
-        &:focus {
-            border-color: #ff2d7a;
+        transition: border-color 0.25s ease;
+
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            display: none;
         }
 
         &::placeholder {
-            color: #64748b;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        &:focus {
+            border-color: #00ff33;
         }
     }
 
-    .left textarea {
-        min-height: 500px;
-    }
+    .resume-upload {
+        flex: 1;
+        min-height: 250px;
 
-    #selfDescription {
-        min-height: 120px;
-    }
+        background: #001604;
+        border: 2px solid #174600;
+        border-radius: 1rem;
 
-    .upload-box {
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
+        align-items: center;
 
-        min-height: 170px;
+        text-align: center;
         cursor: pointer;
 
-        border: 2px dashed #2b3548;
-        border-radius: 14px;
-        background: #141b2d;
+        transition:
+            border-color 0.25s ease,
+            transform 0.25s ease;
 
-        p {
-            margin-bottom: 0.4rem;
-            font-weight: 600;
+        &:hover {
+            border-color: #00ff33;
+            transform: translateY(-2px);
         }
 
-        span {
-            color: #94a3b8;
+        svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            color: white;
+            font-family: "CalSans";
+            font-weight: 400;
+            font-size: clamp(1.1rem, 2vw, 1.6rem);
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 0.25rem;
             font-size: 0.9rem;
         }
 
         input {
             display: none;
         }
-
-        &:hover {
-            border-color: #ff2d7a;
-        }
     }
 
-    .divider {
-        margin: 1.5rem 0;
-        text-align: center;
-        position: relative;
+    .interview-btn {
+        grid-area: submit;
+        justify-self: center;
+        align-self: center;
 
-        span {
-            padding: 0 1rem;
-            background: #0b1220;
-            color: #64748b;
-            position: relative;
-            z-index: 2;
-        }
-
-        &::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            width: 100%;
-            height: 1px;
-            background: #243045;
-        }
+        margin-top: 0.5rem;
+        min-width: 220px;
     }
+}
 
-    .input-group {
-        margin-bottom: 1.5rem;
+/* ===========================
+   LARGE TABLETS
+=========================== */
 
-        label {
-            display: block;
-            margin-bottom: 0.75rem;
-            color: #cbd5e1;
-            font-size: 0.9rem;
-        }
-    }
+@media (max-width: 1024px) {
+    .home {
+        padding: 3rem 1.5rem;
 
-    .generate-btn {
-        width: 100%;
-        border: none;
-        border-radius: 14px;
-        padding: 1rem;
-
-        background: linear-gradient(135deg, #ff2d7a, #ff4f94);
-
-        color: white;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.2s ease;
-
-        &:hover {
-            transform: translateY(-2px);
-        }
-    }
-
-    @media (max-width: 900px) {
         .interview-card {
             grid-template-columns: 1fr;
+            grid-template-areas:
+                "job"
+                "profile"
+                "submit";
         }
 
-        .left {
-            border-right: none;
-            border-bottom: 1px solid #1e293b;
+        .job-section {
+            min-height: 450px;
         }
 
-        .left textarea {
-            min-height: 300px;
+        .bio-section {
+            height: 220px;
         }
+
+        .resume-upload {
+            min-height: 220px;
+        }
+    }
+}
+
+/* ===========================
+   TABLETS
+=========================== */
+
+@media (max-width: 768px) {
+    .home {
+        padding: 2rem 1rem;
+        gap: 2rem;
+
+        .hero {
+            h1 {
+                font-size: clamp(1.8rem, 8vw, 2rem);
+                max-width: 100%;
+            }
+        }
+
+        .interview-card {
+            padding: 1rem;
+            gap: 1rem;
+            border-radius: 1rem;
+        }
+
+        .job-section {
+            min-height: 380px;
+        }
+
+        .resume-upload {
+            min-height: 180px;
+        }
+
+        .bio-section {
+            height: 180px;
+        }
+
+        textarea {
+            font-size: 0.9rem;
+        }
+
+        label {
+            font-size: 0.95rem;
+        }
+    }
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 480px) {
+    .home {
+        padding: 1.5rem 0.75rem;
+
+        .hero {
+            h1 {
+                font-size: 1.6rem;
+                line-height: 1;
+            }
+        }
+
+        .interview-card {
+            padding: 0.875rem;
+            border-radius: 0.875rem;
+        }
+
+        .job-section {
+            min-height: 320px;
+        }
+
+        .resume-upload {
+            min-height: 160px;
+
+            svg {
+                width: 48px;
+                height: 48px;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+
+        .bio-section {
+            height: 160px;
+        }
+
+        textarea {
+            padding: 0.875rem;
+            font-size: 0.875rem;
+        }
+
+        label {
+            font-size: 0.9rem;
+        }
+
+        .interview-btn {
+            width: 100%;
+            min-width: unset;
+        }
+    }
+}
+
+/* ===========================
+   EXTRA SMALL DEVICES
+=========================== */
+
+@media (max-width: 360px) {
+    .home {
+        .hero h1 {
+            font-size: 1.5rem;
+        }
+
+        .job-section {
+            min-height: 280px;
+        }
+
+        .bio-section {
+            height: 140px;
+        }
+
+        textarea {
+            font-size: 0.85rem;
+        }
+    }
+}
+
+.interview-btn {
+    background: #00ff33;
+    color: #001207;
+
+    border: 2px solid #00ff33;
+    border-radius: 0.9rem;
+
+    padding: 1rem 2.5rem;
+
+    min-width: 220px;
+    height: 58px;
+
+    font-size: 1rem;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 0 24px rgba(0, 255, 51, 0.15);
+
+    &:hover {
+        transform: translateY(-2px);
+        background: #19ff47;
+        box-shadow: 0 0 32px rgba(0, 255, 51, 0.25);
+    }
+
+    &:focus-visible {
+        border-color: #ffffff;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .interview-btn {
+        min-width: 180px;
+        height: 54px;
+        padding: 0.9rem 1.75rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .interview-btn {
+        width: 100%;
+        min-width: unset;
+
+        height: 52px;
+
+        font-size: 0.95rem;
+        border-radius: 0.75rem;
     }
 }

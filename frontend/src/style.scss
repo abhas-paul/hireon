@@ -25,3 +25,28 @@ body,
         "Helvetica Neue",
         sans-serif;
 }
+
+@font-face {
+    font-family: "CalSans";
+    src: url("/fonts/CalSans.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Hide scrollbar but keep scrolling */
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: none;
+}
+
+/* IE/old Edge */
+* {
+    -ms-overflow-style: none;
+}

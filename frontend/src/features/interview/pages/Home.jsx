@@ -3,65 +3,70 @@ import "../style/home.scss";
 const Home = () => {
     return (
         <main className="home">
-            <section className="hero">
+            <header className="hero">
                 <h1>
-                    Create Your Custom <span>Interview Plan</span>
+                    Turn Any Job Description Into an
+                    <span> Interview Strategy</span>
                 </h1>
+            </header>
 
-                <p>
-                    Let our AI analyze the job requirements and your unique
-                    profile to build a winning strategy.
-                </p>
-            </section>
-
-            <section className="interview-card">
-                <article className="left">
-                    <div className="section-header">
-                        <h3>Target Job Description</h3>
-                        <span className="badge">Required</span>
-                    </div>
-
-                    <textarea
-                        id="jobDescription"
-                        placeholder="Paste the full job description here..."
-                    />
-                </article>
-
-                <aside className="right">
-                    <div className="section-header">
-                        <h3>Your Profile</h3>
-                    </div>
-
-                    <label htmlFor="resume" className="upload-box">
-                        <input
-                            type="file"
-                            id="resume"
-                            accept=".pdf"
-                        />
-                        <p>Click to upload your resume</p>
-                        <span>PDF only</span>
+            <form className="interview-card">
+                <section className="job-section">
+                    <label htmlFor="JobDescription">
+                        Target Job Description:<span>*</span>
                     </label>
 
-                    <div className="divider">
-                        <span>OR</span>
-                    </div>
+                    <textarea
+                        id="JobDescription"
+                        name="jobDescription"
+                        required
+                        placeholder="Paste/Write The Full Job Description Here......"
+                    />
+                </section>
 
-                    <div className="input-group">
-                        <label htmlFor="selfDescription">
-                            Quick Self Description
+                <aside className="profile-section">
+                    <section className="resume-section">
+                        <label htmlFor="resume">
+                            Resume:
+                        </label>
+
+                        <label htmlFor="resume" className="resume-upload">
+                            <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 15L12 2M12 2L15 5.5M12 2L9 5.5" stroke="#00FF33" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M8 22.0002H16C18.8284 22.0002 20.2426 22.0002 21.1213 21.1215C22 20.2429 22 18.8286 22 16.0002V15.0002C22 12.1718 22 10.7576 21.1213 9.8789C20.3529 9.11051 19.175 9.01406 17 9.00195M7 9.00195C4.82497 9.01406 3.64706 9.11051 2.87868 9.87889C2 10.7576 2 12.1718 2 15.0002L2 16.0002C2 18.8286 2 20.2429 2.87868 21.1215C3.17848 21.4213 3.54062 21.6188 4 21.749" stroke="#00FF33" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+
+                            <h3>Upload Your Resume Here</h3>
+                            <p>PDF Only</p>
+
+                            <input
+                                type="file"
+                                id="resume"
+                                name="resume"
+                                accept=".pdf"
+                                hidden
+                            />
+                        </label>
+                    </section>
+
+                    <section className="bio-section">
+                        <label htmlFor="bio">
+                            Quick Self Description:<span>*</span>
                         </label>
 
                         <textarea
-                            id="selfDescription"
-                            placeholder="Describe yourself..."
+                            id="bio"
+                            name="bio"
+                            required
+                            placeholder="Describe Yourself...."
                         />
-                    </div>
-
-                    <button className="generate-btn">
-                        Generate Interview Strategy
-                    </button>
+                    </section>
                 </aside>
-            </section>
+
+                <button type="submit" className="btn interview-btn">
+                    Generate Strategy
+                </button>
+            </form>
         </main>
     );
 };
