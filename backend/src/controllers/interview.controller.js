@@ -79,8 +79,29 @@ async function getInterviewReportById(req, res) {
 /**
  * @description Fetch all interview from a specific user
  */
-async function getAllInterviews(req, res) {
-    
-}
+const getAllInterviews = async (req, res) => {
+    try {
+        const interviewReports = await InterviewReport.find({
+            user: req.user.id,
+        })
+            .select(
+                "-resume -selfDescription -jobDescription -__v -technicalQuestions -behavioralQuestions -skillGap -preparationPlan"
+            )
+            .sort({ createdAt: -1 })
+            .lean();
+
+        return res.status(200).json({
+            message: "Interview reports fetched successfully",
+            count: interviewReports.length,
+            interviewReports,
+        });
+    } catch (error) {
+        console.error("Get All Interviews Error:", error);
+
+        return res.status(500).json({
+            message: "Internal server error",
+        });
+    }
+};
 
 module.exports = { createInterviewReport, getInterviewReportById, getAllInterviews};
