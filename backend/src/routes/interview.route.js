@@ -2,7 +2,8 @@ const express = require("express");
 const authMiddleware = require("../middlewares/auth.middleware.js");
 const {
     createInterviewReport,
-    getInterviewReportById
+    getInterviewReportById,
+    getAllInterviews
 } = require("../controllers/interview.controller.js");
 const upload = require("../middlewares/file.middleware.js");
 
@@ -16,10 +17,17 @@ const interviewRouter = express.Router();
 interviewRouter.post("/", authMiddleware.authUser, upload.single("resume"), createInterviewReport);
 
 /**
- * @route       POST /api/interview/:interviewId
+ * @route       GET /api/interview/:interviewId
  * @description get interview report by interviewId,
  * @access      Private
 */
-interviewRouter.post("/report/:interviewId", authMiddleware.authUser, getInterviewReportById);
+interviewRouter.get("/report/:interviewId", authMiddleware.authUser, getInterviewReportById);
+
+/**
+ * @route       GET /api/interview/
+ * @description get all interview by a specific user
+ * @access      Private
+*/
+interviewRouter.get("/", authMiddleware.authUser, getAllInterviews);
 
 module.exports = interviewRouter;

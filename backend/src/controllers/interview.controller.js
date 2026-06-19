@@ -76,4 +76,11 @@ async function getInterviewReportById(req, res) {
     }
 }
 
-module.exports = { createInterviewReport, getInterviewReportById };
+/**
+ * @description Fetch all interview from a specific user
+ */
+async function getAllInterviews(req, res) {
+    
+}
+
+module.exports = { createInterviewReport, getInterviewReportById, getAllInterviews};

@@ -5,7 +5,17 @@ const ai = new GoogleGenAI({
     apiKey: process.env.GOOGLE_GENAI_API_KEY,
 });
 
+/**
+ * Interview Report Schema
+ */
 const interviewReportSchema = z.object({
+    title: z
+        .string()
+        .min(1)
+        .describe(
+            "A concise professional title for the generated interview report"
+        ),
+
     matchScore: z.number().min(0).max(100),
 
     technicalQuestions: z
@@ -49,11 +59,14 @@ const interviewReportSchema = z.object({
 });
 
 /**
- * Extract JSON if Gemini wraps it in markdown.
+ * Extract JSON from Gemini response.
+ *
+ * @param {string} text
+ * @returns {Object}
  */
 function extractJson(text) {
     const cleaned = text
-        .replace(/```json/g, "")
+        .replace(/```json/gi, "")
         .replace(/```/g, "")
         .trim();
 
@@ -61,7 +74,7 @@ function extractJson(text) {
 }
 
 /**
- * Generate interview report.
+ * Generate Interview Report
  *
  * @param {Object} params
  * @param {string} params.resume
@@ -71,7 +84,7 @@ function extractJson(text) {
  */
 async function generateInterviewReport({
     resume,
-    selfDescription,
+    selfDescription = "",
     jobDescription,
 }) {
     if (!resume?.trim()) {
@@ -83,27 +96,40 @@ async function generateInterviewReport({
     }
 
     const prompt = `
-You are a senior engineering manager and interviewer.
+You are a senior engineering manager and technical interviewer.
 
-Analyze the candidate against the job description.
+Analyze the candidate against the provided job description.
 
-Generate ONLY valid JSON.
+Return ONLY valid JSON.
 
 Requirements:
 
-- Match score from 0 to 100.
-- Exactly 5 technical questions.
-- Exactly 3 behavioral questions.
-- 2 to 5 skill gaps.
-- Exactly 5 preparation plan days.
-- Questions must be specific to the candidate profile.
+CRITICAL:
+The JSON MUST contain a non-empty "title" field.
+The title is REQUIRED.
+
+Examples:
+- "Frontend Engineer Interview Preparation Report"
+- "Senior React Developer Interview Report"
+- "Full Stack Developer Interview Readiness Report",
+
+- Match score must be between 0 and 100.
+- Generate exactly 5 technical questions.
+- Generate exactly 3 behavioral questions.
+- Generate between 2 and 5 skill gaps.
+- Generate exactly 5 preparation plan days.
+- Questions must be tailored to the candidate profile.
 - Avoid generic interview questions.
-- Tailor every question to the job requirements.
+- Questions should directly relate to the technologies and responsibilities mentioned in the job description.
+- Behavioral questions should be based on the candidate's experience.
+- Skill gaps should be realistic and justified.
+- Preparation plan should directly address identified gaps.
 
 Response format:
 
 {
-  "matchScore": 0,
+  "title": "Frontend Engineer Interview Preparation Report",
+  "matchScore": 92,
   "technicalQuestions": [
     {
       "question": "",
@@ -151,18 +177,12 @@ ${selfDescription}
                 model: "gemini-3-flash-preview",
                 contents: prompt,
                 config: {
-                    temperature: 0.4,
+                    temperature: 0.3,
                     responseMimeType: "application/json",
                 },
             });
 
-            const rawText = response.text;
-
-            console.log(
-                `[INTERVIEW REPORT] Attempt ${attempt}`
-            );
-
-            const parsed = extractJson(rawText);
+            const parsed = extractJson(response.text);
 
             const validated =
                 interviewReportSchema.parse(parsed);
@@ -174,6 +194,8 @@ ${selfDescription}
             console.error(
                 `[INTERVIEW REPORT] Attempt ${attempt} failed`
             );
+
+            console.error(error);
 
             if (attempt < 3) {
                 await new Promise(resolve =>

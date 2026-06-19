@@ -70,6 +70,11 @@ const preparationPlanSchema = new mongoose.Schema({
 
 // My main schema. Timestamps are on so I can track exactly when this report was generated.
 const interviewReportSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: [true, "Title is required"],
+        trim: true,
+    },
     jobDescription: {
         type: String,
         required: [true, "Job description is required"],
