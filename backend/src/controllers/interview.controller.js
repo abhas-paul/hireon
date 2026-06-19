@@ -3,9 +3,7 @@ const { generateInterviewReport } = require("../services/ai.service.js");
 const InterviewReport = require("../models/report.model.js");
 
 /**
- * @route   POST /api/interviews
- * @description Generate an AI interview report from a resume and job details
- * @access  Private
+ * @description Generate an AI inteview report from a resume and job details
  */
 async function createInterviewReport(req, res, next) {
     try {
@@ -41,4 +39,41 @@ async function createInterviewReport(req, res, next) {
     }
 }
 
-module.exports = { createInterviewReport };
+/**
+ * @description Controller to get interview by interview id
+ */
+async function getInterviewReportById(req, res) {
+    try {
+        const { interviewId } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(interviewId)) {
+            return res.status(400).json({
+                message: "Invalid interview report ID",
+            });
+        }
+
+        const interviewReport = await InterviewReport.findOne({
+            _id: interviewId,
+            user: req.user.id,
+        });
+
+        if (!interviewReport) {
+            return res.status(404).json({
+                message: "Interview report not found",
+            });
+        }
+
+        return res.status(200).json({
+            message: "Interview report fetched successfully",
+            interviewReport,
+        });
+    } catch (error) {
+        console.error("Get Interview Report Error:", error);
+
+        return res.status(500).json({
+            message: "Internal server error",
+        });
+    }
+}
+
+module.exports = { createInterviewReport, getInterviewReportById };
