@@ -1,9 +1,5 @@
 # HireOn
 
-<p align="center">
-  <img src="./public/logo.png" alt="HireOn Logo" width="120"/>
-</p>
-
 <h3 align="center">
 Transform Any Job Description Into a Winning Interview Strategy
 </h3>
@@ -236,7 +232,9 @@ npm run dev
 ---
 
 ## Screenshots
-
+<p align="center">
+  <img src="./screenshots/Screenshot 2026-06-20 133410.png" alt="HireOn Logo" width="120"/>
+</p>
 
 ---
 
