@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 
 import "../style/interview.scss";
 
@@ -9,6 +9,7 @@ import { InterviewStats, InterviewSidebar, InterviewContent } from "../component
 
 const Interview = () => {
     const { interviewId } = useParams();
+    const navigate = useNavigate();
 
     const {
         report,
@@ -51,6 +52,11 @@ const Interview = () => {
                 matchScore={report.matchScore}
                 skillGap={report.skillGap}
             />
+            <section className="parent-go-home">
+                <button className="go-home" onClick={() => navigate("/")}>
+                    Go Home
+                </button>
+            </section>
         </main>
     );
 };
