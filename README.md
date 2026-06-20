@@ -1,4 +1,4 @@
-# HireOn
+# 🚀 HireOn
 
 <h3 align="center">
 Transform Any Job Description Into a Winning Interview Strategy
@@ -8,9 +8,17 @@ Transform Any Job Description Into a Winning Interview Strategy
 AI-powered interview preparation platform that analyzes job requirements, resumes, and personal profiles to generate personalized interview roadmaps, technical questions, behavioral questions, and skill-gap insights.
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/React-Frontend-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Node.js-Backend-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/MongoDB-Database-brightgreen?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Gemini-AI-orange?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/License-AGPL--3.0-red?style=for-the-badge" />
+</p>
+
 ---
 
-## Overview
+## 🎯 Overview
 
 HireOn helps job seekers prepare smarter by turning a job description into a complete interview preparation plan.
 
@@ -18,40 +26,40 @@ Instead of spending hours researching technologies, preparing answers, and ident
 
 ---
 
-## Features
+## ✨ Features
 
-### AI-Powered Interview Report Generation
+### 🤖 AI-Powered Interview Report Generation
 
 Generate complete interview preparation reports using:
 
-- Job Description
-- Resume Upload (PDF)
-- Personal Background & Self Description
+- 📄 Job Description
+- 📑 Resume Upload (PDF)
+- 👤 Personal Background & Self Description
 
 ---
 
-### Technical Interview Questions
+### 💻 Technical Interview Questions
 
 Receive role-specific technical interview questions with:
 
-- Interviewer Intent
-- Suggested Answers
-- Skill Evaluation Focus
+- 🎯 Interviewer Intent
+- 💡 Suggested Answers
+- 📈 Skill Evaluation Focus
 
 ---
 
-### Behavioral Interview Questions
+### 🗣️ Behavioral Interview Questions
 
 Practice realistic behavioral questions designed around:
 
-- Previous Experience
-- Communication Skills
-- Collaboration Ability
-- Leadership & Problem Solving
+- 🤝 Previous Experience
+- 💬 Communication Skills
+- 👥 Collaboration Ability
+- 🧠 Leadership & Problem Solving
 
 ---
 
-### Skill Gap Analysis
+### 📊 Skill Gap Analysis
 
 Identify missing skills and weaknesses between:
 
@@ -63,29 +71,29 @@ Includes severity indicators to prioritize learning.
 
 ---
 
-### Personalized Preparation Roadmap
+### 🛣️ Personalized Preparation Roadmap
 
 Receive a structured preparation plan with:
 
-- Daily Learning Goals
-- Recommended Topics
-- Interview Readiness Tasks
-- Strategic Focus Areas
+- 📅 Daily Learning Goals
+- 📚 Recommended Topics
+- ✅ Interview Readiness Tasks
+- 🎯 Strategic Focus Areas
 
 ---
 
-### Report History
+### 🗂️ Report History
 
 Access all previously generated reports:
 
-- Match Score
-- Generation Date
-- Interview Strategy
-- Roadmap & Questions
+- 📈 Match Score
+- 📅 Generation Date
+- 📋 Interview Strategy
+- 🛣️ Roadmap & Questions
 
 ---
 
-### Secure Authentication
+### 🔐 Secure Authentication
 
 - User Registration
 - Login System
@@ -94,9 +102,9 @@ Access all previously generated reports:
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-### Frontend
+### 🎨 Frontend
 
 - React
 - React Router
@@ -104,7 +112,7 @@ Access all previously generated reports:
 - Axios
 - Vite
 
-### Backend
+### ⚙️ Backend
 
 - Node.js
 - Express.js
@@ -113,13 +121,13 @@ Access all previously generated reports:
 - Multer
 - JWT Authentication
 
-### AI
+### 🧠 AI
 
 - Google Gemini API
 
 ---
 
-## Project Structure
+## 🏗️ Project Structure
 
 ```bash
 HireOn
@@ -170,23 +178,21 @@ HireOn
 
 ---
 
-## Installation
+## ⚡ Installation
 
-### Clone Repository
+### 📥 Clone Repository
 
 ```bash
 git clone https://github.com/yourusername/hireon.git
 cd hireon
 ```
 
----
-
-### Install Dependencies
+### 📦 Install Dependencies
 
 Frontend
 
 ```bash
-cd frontend
+cd web
 npm install
 ```
 
@@ -199,7 +205,7 @@ npm install
 
 ---
 
-## Environment Variables
+## 🔑 Environment Variables
 
 Create a `.env` file inside the backend directory.
 
@@ -215,7 +221,7 @@ GEMINI_API_KEY=your_gemini_api_key
 
 ---
 
-## Running Locally
+## 🚀 Running Locally
 
 Backend
 
@@ -231,42 +237,70 @@ npm run dev
 
 ---
 
-## Screenshots
+## 📸 Screenshots
+
+### 🔐 Login Page
+
 <p align="center">
-  <img src="./screenshots/Screenshot 2026-06-20 133410.png" alt="Login-Page"/>
+  <img src="./screenshots/Screenshot 2026-06-20 133410.png" alt="Login Page"/>
 </p>
+
+### 📝 Register Page
+
 <p align="center">
-  <img src="./screenshots/Screenshot 2026-06-20 133424.png" alt="Register-Page"/>
+  <img src="./screenshots/Screenshot 2026-06-20 133424.png" alt="Register Page"/>
 </p>
+
+### 🎯 Interview Strategy Generator
+
 <p align="center">
-  <img src="./screenshots/Screenshot 2026-06-20 133459.png" alt="Home-Page"/>
+  <img src="./screenshots/Screenshot 2026-06-20 133459.png" alt="Home Page"/>
 </p>
+
 ---
 
-## Future Improvements
+## 🚧 Future Improvements
 
-- Export Reports as PDF
-- AI Mock Interview Mode
-- Voice-Based Interviews
-- Company-Specific Interview Preparation
-- ATS Resume Scoring
-- Interview Performance Tracking
-- Learning Resource Recommendations
+- 📄 Export Reports as PDF
+- 🎤 AI Mock Interview Mode
+- 🗣️ Voice-Based Interviews
+- 🏢 Company-Specific Interview Preparation
+- 📊 ATS Resume Scoring
+- 📈 Interview Performance Tracking
+- 📚 Learning Resource Recommendations
+- 📅 Interview Scheduling Assistant
+- 🎯 Personalized Learning Paths
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Contributions, suggestions, and improvements are welcome.
 
 1. Fork the repository
 2. Create a feature branch
+
+```bash
+git checkout -b feature/amazing-feature
+```
+
 3. Commit your changes
-4. Open a pull request
+
+```bash
+git commit -m "Add amazing feature"
+```
+
+4. Push your branch
+
+```bash
+git push origin feature/amazing-feature
+```
+
+5. Open a Pull Request
 
 ---
 
-## License
+## 📜 License
 
 This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0).
 
@@ -274,8 +308,12 @@ See the LICENSE file for details.
 
 ---
 
-## Author
+## 👨‍💻 Author
 
 Built with passion by **Abhas Paul**.
 
-If you found this project useful, consider giving it a ⭐ on GitHub.
+⭐ If you found this project useful, consider starring the repository.
+
+💡 Feedback, suggestions, and contributions are always welcome.
+
+🚀 Happy Interview Preparation!
