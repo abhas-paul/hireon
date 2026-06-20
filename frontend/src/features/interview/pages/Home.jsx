@@ -1,8 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 import "../style/home.scss";
 import { useInterview } from "../hooks/useInterview";
+
+import { AllReportsSection } from "../components/index.js";
 
 const Home = () => {
     const { loading, generateReport } = useInterview();
@@ -155,6 +157,7 @@ const Home = () => {
                         : "Generate Strategy"}
                 </button>
             </form>
+            <AllReportsSection />
         </main>
     );
 };
