@@ -27,7 +27,6 @@ function Register() {
         <h1>Register</h1>
 
         <form onSubmit={handleSubmit}>
-          <legend className="sr-only">Register Credentials</legend>
 
           <div className="input-group">
             <label htmlFor="username">Username</label>
