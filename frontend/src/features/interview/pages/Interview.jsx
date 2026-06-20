@@ -1,44 +1,56 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router";
+
 import "../style/interview.scss";
 
+import { useInterview } from "../hooks/useInterview";
+
+import { InterviewStats, InterviewSidebar, InterviewContent } from "../components/index.js";
+
 const Interview = () => {
+    const { interviewId } = useParams();
+
+    const {
+        report,
+        loading,
+        getReportById,
+    } = useInterview();
+
+    const [activeTab, setActiveTab] =
+        useState("technical");
+
+    useEffect(() => {
+        if (!report && interviewId) {
+            getReportById(interviewId);
+        }
+    }, [interviewId]);
+
+    if (loading || !report) {
+        return (
+            <main className="interview-page">
+                <section className="content">
+                    <h1>Loading Report...</h1>
+                </section>
+            </main>
+        );
+    }
+
     return (
         <main className="interview-page">
-            <aside className="left-sidebar">
-                <button>Technical Questions</button>
-                <button>Behavioral Questions</button>
-                <button>Roadmap</button>
-            </aside>
+            <InterviewSidebar
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+            />
 
-            <section className="content">
-                <h1>Technical Questions</h1>
+            <InterviewContent
+                activeTab={activeTab}
+                report={report}
+            />
 
-                <div className="question-card">
-                    <h3>Explain Event Loop in Node.js</h3>
-                    <p>
-                        Describe how the event loop handles asynchronous
-                        operations and callbacks.
-                    </p>
-                </div>
-
-                <div className="question-card">
-                    <h3>What is Redis?</h3>
-                    <p>
-                        Explain caching strategies and common Redis use
-                        cases.
-                    </p>
-                </div>
-            </section>
-
-            <aside className="right-sidebar">
-                <h3>Skill Gaps</h3>
-
-                <div className="tags">
-                    <span>Redis</span>
-                    <span>Message Queue</span>
-                    <span>Event Loop</span>
-                    <span>System Design</span>
-                </div>
-            </aside>
+            <InterviewStats
+                matchScore={report.matchScore}
+                skillGap={report.skillGap}
+            />
         </main>
     );
 };

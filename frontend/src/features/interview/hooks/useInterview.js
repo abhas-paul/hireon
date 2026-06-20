@@ -1,16 +1,32 @@
+import { useContext } from "react";
+
 import {
     getAllInterviews,
     getInterviewReportById,
-    generateInterviewReport
+    generateInterviewReport,
 } from "../services/interview.api.js";
-import { useContext } from "react";
+
 import { InterviewContext } from "../interview.context.jsx";
 
+/**
+ * Interview context hook.
+ *
+ * @returns {{
+ *  loading: boolean,
+ *  report: Object | null,
+ *  reports: Object[],
+ *  generateReport: Function,
+ *  getReportById: Function,
+ *  getReports: Function
+ * }}
+ */
 export const useInterview = () => {
     const context = useContext(InterviewContext);
 
     if (!context) {
-        throw new Error("Hook must be used within the InterviewProvider");
+        throw new Error(
+            "useInterview must be used within an InterviewProvider"
+        );
     }
 
     const {
@@ -19,9 +35,20 @@ export const useInterview = () => {
         report,
         setReport,
         reports,
-        setReports
+        setReports,
     } = context;
 
+    /**
+     * Generate a new interview report.
+     *
+     * @async
+     * @param {Object} params
+     * @param {File} params.resumeFile
+     * @param {string} params.selfDescription
+     * @param {string} params.jobDescription
+     *
+     * @returns {Promise<Object>}
+     */
     const generateReport = async ({
         resumeFile,
         selfDescription,
@@ -48,22 +75,40 @@ export const useInterview = () => {
                 jobDescription,
             });
 
+            if (!response?.interviewReport) {
+                throw new Error(
+                    "Invalid response received from server."
+                );
+            }
+
             setReport(response.interviewReport);
 
             return response.interviewReport;
         } catch (error) {
             const message =
-                error?.message ||
                 error?.response?.data?.message ||
+                error?.message ||
                 "Failed to generate interview report.";
 
-            console.error("Generate Report Error:", error);
+            console.error(
+                "[Interview] Generate Report Error:",
+                error
+            );
+
             throw new Error(message);
         } finally {
             setLoading(false);
         }
     };
 
+    /**
+     * Fetch a report by ID.
+     *
+     * @async
+     * @param {string} interviewId
+     *
+     * @returns {Promise<Object>}
+     */
     const getReportById = async (interviewId) => {
         if (!interviewId?.trim()) {
             throw new Error("Interview ID is required.");
@@ -72,24 +117,42 @@ export const useInterview = () => {
         setLoading(true);
 
         try {
-            const response = await getInterviewReportById(interviewId);
+            const response = await getInterviewReportById(
+                interviewId
+            );
+
+            if (!response?.interviewReport) {
+                throw new Error(
+                    "Interview report not found."
+                );
+            }
 
             setReport(response.interviewReport);
 
             return response.interviewReport;
         } catch (error) {
             const message =
-                error?.message ||
                 error?.response?.data?.message ||
+                error?.message ||
                 "Failed to fetch interview report.";
 
-            console.error("Get Interview Report Error:", error);
+            console.error(
+                "[Interview] Get Report Error:",
+                error
+            );
+
             throw new Error(message);
         } finally {
             setLoading(false);
         }
     };
 
+    /**
+     * Fetch all interview reports.
+     *
+     * @async
+     * @returns {Promise<Object[]>}
+     */
     const getReports = async () => {
         setLoading(true);
 
@@ -97,18 +160,21 @@ export const useInterview = () => {
             const response = await getAllInterviews();
 
             const interviewReports =
-                response?.interviewReport || [];
+                response?.interviewReports || [];
 
             setReports(interviewReports);
 
             return interviewReports;
         } catch (error) {
             const message =
-                error?.message ||
                 error?.response?.data?.message ||
+                error?.message ||
                 "Failed to fetch interview reports.";
 
-            console.error("Get Interview Reports Error:", error);
+            console.error(
+                "[Interview] Get Reports Error:",
+                error
+            );
 
             throw new Error(message);
         } finally {
@@ -116,5 +182,13 @@ export const useInterview = () => {
         }
     };
 
-    return { loading, report, reports, generateReport, getReportById, getReports };
-}
+    return {
+        loading,
+        report,
+        reports,
+
+        generateReport,
+        getReportById,
+        getReports,
+    };
+};

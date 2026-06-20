@@ -1,28 +1,32 @@
 .interview-page {
     min-height: 100vh;
-    background: #060b16;
-    color: #fff;
+    background: #001207;
+
+    padding: clamp(1rem, 2vw, 2rem);
 
     display: grid;
-    grid-template-columns: 220px 1fr 260px;
-    gap: 1rem;
+    grid-template-columns: 240px minmax(0, 1fr) 280px;
+    gap: 1.5rem;
 
-    padding: 1rem;
+    font-family: "CalSans";
 
-    font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+    @media (max-width: 1200px) {
+        grid-template-columns: 220px minmax(0, 1fr);
+    }
+
+    @media (max-width: 900px) {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .left-sidebar,
-.content,
-.right-sidebar {
-    background: #0b1220;
-    border: 1px solid #1e293b;
-    border-radius: 24px;
+.right-sidebar,
+.content {
+    background: #000f03;
+    border: 2px solid #174600;
+    border-radius: 1.25rem;
+    overflow: hidden;
 }
 
 .left-sidebar {
@@ -32,62 +36,193 @@
     flex-direction: column;
     gap: 0.75rem;
 
+    height: fit-content;
+    position: sticky;
+    top: 1rem;
+
     button {
-        background: transparent;
-        border: 1px solid #334155;
-        color: #cbd5e1;
+        min-height: 56px;
+        min-width: 180px;
 
-        padding: 0.8rem;
-        border-radius: 12px;
+        background: #001604;
+        border: 2px solid #174600;
+        border-radius: 0.9rem;
 
-        text-align: left;
+        color: white;
+        font-family: "CalSans";
+        font-size: 0.95rem;
+
+        padding: 1rem;
+
         cursor: pointer;
 
-        transition: all 0.2s ease;
+        transition: all 0.25s ease;
 
         &:hover {
-            border-color: #ff2d7a;
-            color: #fff;
+            border-color: #00ff33;
+            transform: translateY(-2px);
+            background: rgba(0, 255, 51, 0.08);
+        }
+
+        &.active {
+            background: #00ff33;
+            border-color: #00ff33;
+            color: #001207;
+        }
+    }
+
+    @media (max-width: 900px) {
+        position: static;
+
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        button {
+            flex-shrink: 0;
+        }
+    }
+
+    @media (max-width: 768px) {
+        button {
+            min-width: 160px;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        gap: 0.5rem;
+
+        button {
+            min-width: 140px;
+            min-height: 50px;
+            padding: 0.75rem;
+            font-size: 0.85rem;
         }
     }
 }
 
 .content {
+    min-width: 0;
+
     padding: 2rem;
-    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
 
     h1 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
+        color: white;
+        font-size: clamp(1.6rem, 4vw, 2.8rem);
+        font-weight: 400;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+        padding: 1.25rem;
+    }
+
+    @media (max-width: 480px) {
+        padding: 1rem;
     }
 }
 
 .question-card {
-    background: #141b2d;
-    border: 1px solid #243045;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 255, 51, 0.04) 0%,
+        rgba(0, 255, 51, 0.01) 100%
+    );
 
-    padding: 1.25rem;
-    border-radius: 16px;
+    border: 1px solid #174600;
+    border-radius: 1rem;
 
-    margin-bottom: 1rem;
+    padding: 1.4rem;
+
+    transition: all 0.25s ease;
+
+    overflow-wrap: break-word;
+
+    &:hover {
+        border-color: #00ff33;
+        transform: translateY(-4px);
+        box-shadow: 0 0 30px rgba(0, 255, 51, 0.08);
+    }
 
     h3 {
-        margin-bottom: 0.75rem;
-        font-size: 1.05rem;
+        color: #00ff33;
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        font-weight: 400;
+        line-height: 1.5;
+        margin-bottom: 1rem;
     }
 
     p {
-        color: #94a3b8;
-        line-height: 1.6;
+        color: #c0cbc3;
+        line-height: 1.8;
+        margin-bottom: 0.85rem;
+
+        font-family: sans-serif;
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+
+        strong {
+            color: white;
+        }
+    }
+
+    ul {
+        padding-left: 1.25rem;
+        margin-top: 1rem;
+
+        li {
+            color: #d6dfd7;
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+
+            font-family: sans-serif;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 1rem;
     }
 }
 
 .right-sidebar {
-    padding: 1rem;
+    padding: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    height: fit-content;
+    position: sticky;
+    top: 1rem;
 
     h3 {
-        margin-bottom: 1rem;
-        font-size: 1rem;
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+
+    @media (max-width: 1200px) {
+        position: static;
+    }
+
+    @media (max-width: 900px) {
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        padding: 1.25rem;
     }
 }
 
@@ -97,48 +232,66 @@
     gap: 0.75rem;
 
     span {
-        padding: 0.5rem 0.9rem;
+        background: rgba(0, 255, 51, 0.08);
+        border: 1px solid #174600;
 
+        color: #00ff33;
+
+        padding: 0.6rem 0.9rem;
         border-radius: 999px;
 
-        border: 1px solid rgba(255, 45, 122, 0.35);
-
-        background: rgba(255, 45, 122, 0.1);
-
-        color: #ff2d7a;
-
         font-size: 0.85rem;
-        font-weight: 500;
+        font-family: "CalSans";
+
+        transition: all 0.2s ease;
+
+        max-width: 100%;
+        overflow-wrap: break-word;
+
+        &:hover {
+            border-color: #00ff33;
+            transform: translateY(-2px);
+        }
+    }
+
+    @media (max-width: 480px) {
+        gap: 0.5rem;
+
+        span {
+            font-size: 0.8rem;
+        }
     }
 }
 
-@media (max-width: 1024px) {
-    .interview-page {
-        grid-template-columns: 180px 1fr;
-    }
-
-    .right-sidebar {
-        grid-column: span 2;
-    }
-}
-
-@media (max-width: 768px) {
-    .interview-page {
-        grid-template-columns: 1fr;
-    }
-
-    .left-sidebar,
-    .right-sidebar,
-    .content {
+.right-sidebar .tags:first-of-type {
+    span {
         width: 100%;
-    }
 
-    .left-sidebar {
-        flex-direction: row;
-        overflow-x: auto;
-    }
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    .content {
-        padding: 1.25rem;
+        text-align: center;
+
+        font-size: clamp(1.5rem, 4vw, 2rem);
+
+        padding: 1.2rem;
+
+        background: rgba(0, 255, 51, 0.12);
+        border-color: #00ff33;
+
+        color: #00ff33;
+
+        box-shadow: 0 0 30px rgba(0, 255, 51, 0.08);
     }
+}
+
+* {
+    min-width: 0;
+}
+
+img,
+svg {
+    max-width: 100%;
+    height: auto;
 }

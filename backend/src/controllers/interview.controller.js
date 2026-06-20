@@ -1,4 +1,5 @@
 const pdfParse = require("pdf-parse");
+const mongoose = require("mongoose");
 const { generateInterviewReport } = require("../services/ai.service.js");
 const InterviewReport = require("../models/report.model.js");
 
