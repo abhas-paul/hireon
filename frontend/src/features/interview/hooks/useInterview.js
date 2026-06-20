@@ -48,9 +48,9 @@ export const useInterview = () => {
                 jobDescription,
             });
 
-            setReport(response);
+            setReport(response.interviewReport);
 
-            return response;
+            return response.interviewReport;
         } catch (error) {
             const message =
                 error?.message ||
@@ -74,9 +74,9 @@ export const useInterview = () => {
         try {
             const response = await getInterviewReportById(interviewId);
 
-            setReport(response);
+            setReport(response.interviewReport);
 
-            return response;
+            return response.interviewReport;
         } catch (error) {
             const message =
                 error?.message ||
@@ -97,7 +97,7 @@ export const useInterview = () => {
             const response = await getAllInterviews();
 
             const interviewReports =
-                response?.interviewReports || [];
+                response?.interviewReport || [];
 
             setReports(interviewReports);
 

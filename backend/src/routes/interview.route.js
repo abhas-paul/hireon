@@ -10,7 +10,7 @@ const interviewRouter = express.Router();
  * @description Create a new interview session
  * @access      Private
  */
-interviewRouter.post("/", authMiddleware.authUser, upload.single("resume"), interviewController.createInterviewReport);
+interviewRouter.post("/", authMiddleware.authUser, upload.single("resumeFile"), interviewController.createInterviewReport);
 
 /**
  * @route       GET /api/interview/:interviewId
