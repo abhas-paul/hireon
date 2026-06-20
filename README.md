@@ -233,7 +233,7 @@ npm run dev
 
 ## Screenshots
 <p align="center">
-  <img src="./screenshots/Screenshot 2026-06-20 133410.png" alt="HireOn Logo" width="120"/>
+  <img src="./screenshots/Screenshot 2026-06-20 133410.png" alt="HireOn Logo"/>
 </p>
 
 ---
